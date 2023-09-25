@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\WedstrijdController;
+use App\Http\Controllers\MatchController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [WedstrijdController::class, 'index']);
-Route::get('/wedstrijd', [WedstrijdController::class, 'show']);
+Route::get('/', [MatchController::class, 'index']);
+Route::get('/wedstrijd', [MatchController::class, 'show']);
 
 

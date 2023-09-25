@@ -11,6 +11,9 @@
 <h1> wedstrijd-overzicht</h1>
 
 <div><p>wedstrijd <a href="/wedstrijd">bekijken</a></p></div>
-
+@foreach($matches as $match)
+    <p>{{$match->home_id}}</p>
+    <p>{{$match->away_id}}</p>
+@endforeach
 </body>
 </html>

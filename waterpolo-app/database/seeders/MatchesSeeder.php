@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class MatchesSeeder extends Seeder
 {
@@ -14,7 +15,7 @@ class MatchesSeeder extends Seeder
     {
         DB::table('matches')->insert([
             'home_id' => '1',
-            'away_id' => '2',
+            'away_id' => '52',
         ]);
     }
 }

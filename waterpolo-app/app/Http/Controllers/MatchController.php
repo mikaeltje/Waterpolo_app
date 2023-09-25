@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Matches;
 use Illuminate\Http\Request;
 
-class WedstrijdController extends Controller
+class MatchController extends Controller
 {
     public function index(){
-        return view('index');
+        $matches = Matches::all();
+        return view('index', compact('matches'));
     }
     public function show(){
         $wedstrijd = 'donk - zvl';
