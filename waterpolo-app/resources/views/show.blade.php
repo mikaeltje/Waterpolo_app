@@ -7,7 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
+
 <a href="/">terug</a>
 <h1>{{$wedstrijd}}</h1>
 </body>
