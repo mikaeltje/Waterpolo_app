@@ -9,8 +9,5 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class player extends Model
 {
     use HasFactory;
-    public function team(): HasOne
-    {
-        return $this->hasOne(Team::class);
-    }
+
 }

@@ -1,0 +1,35 @@
+@extends('layouts.app')
+
+@section('content')
+    <div class="">
+        <form method="POST" action="/wedstrijd/{{$match->id}}">
+            @csrf
+            @method('PUT')
+
+            <div class="">
+                <label class="label" for="home_id">home_team</label>
+
+                <select name="home_id">
+                    @foreach($teams as $team)
+                        <option value="{{$team->id}}" @if ($match->home_id == $team->id) selected @endif>{{$team->name}}</option>
+
+                    @endforeach
+
+                </select>
+
+                <label class="label" for="away_id">home_team</label>
+
+                <select name="away_id">
+                    @foreach($teams as $team)
+                        <option value="{{$team->id}}">{{$team->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="">
+                <button class="" type="submit">submit</button>
+            </div>
+
+        </form>
+    </div>
+@endsection

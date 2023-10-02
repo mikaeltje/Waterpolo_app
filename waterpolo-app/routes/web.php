@@ -22,6 +22,10 @@ Route::get('/welcome', function () {
 Route::get('/', [MatchController::class, 'index']);
 Route::get('/wedstrijd', [MatchController::class, 'show']);
 Route::get('/wedstrijd/create', [MatchController::class, 'create']);
+route::post('/wedstrijd', [MatchController::class, 'store']);
+route::get('/wedstrijd/edit/{match}', [MatchController::class, 'edit']);
+route::put('/wedstrijd/{match}', [MatchController::class, 'update']);
+route::get('/wedstrijd/{match}', [MatchController::class, 'show']);
 
 
 

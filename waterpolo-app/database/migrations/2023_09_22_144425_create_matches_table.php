@@ -12,12 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('matches', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('home_id');
             $table->unsignedBigInteger('away_id');
             $table->timestamps();
         });
+
+//        Schema::table('matches', function (Blueprint $table) {
+//            $table->foreign('home_id')->references('id')->on('teams')->onDelete('cascade');
+//            $table->foreign('away_id')->references('id')->on('teams')->onDelete('cascade');
+//        });
     }
+
 
     /**
      * Reverse the migrations.

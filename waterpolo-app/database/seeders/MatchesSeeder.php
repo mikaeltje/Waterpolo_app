@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Faker\Factory as Faker;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -13,9 +14,10 @@ class MatchesSeeder extends Seeder
      */
     public function run(): void
     {
-            DB::table('matches')->insert([
-                'home_id' => '1',
-                'away_id' => '52',
+        $faker = Faker::create(9);
+        DB::table('matches')->insert([
+                'home_id' => $faker->numberBetween(1, 20),
+                'away_id' => $faker->numberBetween(1, 20),
             ]);
     }
 }
