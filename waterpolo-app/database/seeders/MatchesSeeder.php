@@ -13,9 +13,9 @@ class MatchesSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('matches')->insert([
-            'home_id' => '1',
-            'away_id' => '52',
-        ]);
+            DB::table('matches')->insert([
+                'home_id' => '1',
+                'away_id' => '52',
+            ]);
     }
 }

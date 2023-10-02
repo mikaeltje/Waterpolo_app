@@ -15,4 +15,8 @@ class MatchController extends Controller
         $wedstrijd = 'donk - zvl';
         return view('show', compact('wedstrijd') );
     }
+    public function create(){
+
+        return view('create');
+    }
 }
