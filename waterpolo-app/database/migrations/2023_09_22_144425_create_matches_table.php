@@ -15,6 +15,8 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('home_id');
             $table->unsignedBigInteger('away_id');
+            $table->unsignedBigInteger('user_id');
+            $table->integer('bekeken')->nullable();
             $table->timestamps();
         });
 

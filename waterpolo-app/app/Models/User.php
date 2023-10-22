@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+
     ];
 
     /**
@@ -42,7 +43,25 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    public function isAdmin(){
-       dd($this);
+    public function isAdmin(): bool
+    {
+        if($this->admin === 4)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function bekekenWedstrijden()
+    {
+        return $this->belongsToMany(matches::class, 'matches_bekeken', 'user_id', 'matches_id');
+    }
+    public function aantalBekekenWedstrijden()
+    {
+
+        return $this->bekekenWedstrijden->count();
     }
 }

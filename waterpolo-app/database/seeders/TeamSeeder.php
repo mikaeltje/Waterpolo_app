@@ -25,5 +25,26 @@ class TeamSeeder extends Seeder
         DB::table('teams')->insert([
            'name' => 'heren 3'
         ]);
+        DB::table('teams')->insert([
+           'name' => 'heren 4'
+        ]);
+        DB::table('teams')->insert([
+           'name' => 'heren 5'
+        ]);
+        DB::table('teams')->insert([
+           'name' => 'dames 1'
+        ]);
+        DB::table('teams')->insert([
+           'name' => 'dames 2'
+        ]);
+        DB::table('teams')->insert([
+           'name' => 'dames 3'
+        ]);
+        DB::table('teams')->insert([
+           'name' => 'dames 4'
+        ]);
+        DB::table('teams')->insert([
+           'name' => 'dames 5'
+        ]);
     }
 }

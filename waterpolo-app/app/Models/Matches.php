@@ -11,17 +11,23 @@ class Matches extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['home_id' , 'away_id'];
+    protected $fillable = ['home_id' , 'away_id', 'user_id'];
 
-    public function homeTeam(): BelongsTo
+    public function homeTeam()
     {
         return $this->belongsTo(\App\Models\Team::class, 'home_id');
     }
 
-    public function awayTeam(): BelongsTo
+
+    public function awayTeam()
     {
-        return $this->belongsTo(\App\Models\Team::class, 'away_id');
+        return $this->belongsTo(Team::class, 'away_id');
     }
+    public function bekekenDoorGebruikers()
+    {
+        return $this->belongsToMany(User::class, 'matches_bekeken', 'wedstrijd_id', 'user_id');
+    }
+
 
 
 }
