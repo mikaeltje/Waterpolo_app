@@ -45,7 +45,7 @@ class User extends Authenticatable
     ];
     public function isAdmin(): bool
     {
-        if($this->admin === 4)
+        if($this->admin === 1)
         {
             return true;
         }
@@ -59,9 +59,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(matches::class, 'matches_bekeken', 'user_id', 'matches_id');
     }
-    public function aantalBekekenWedstrijden()
-    {
-
-        return $this->bekekenWedstrijden->count();
-    }
+//    public function aantalBekekenWedstrijden()
+//    {
+//
+//        return $this->bekekenWedstrijden->count();
+//    }
 }

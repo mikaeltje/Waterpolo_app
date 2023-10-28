@@ -17,6 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('away_id');
             $table->unsignedBigInteger('user_id');
             $table->integer('bekeken')->nullable();
+            $table->boolean('match_status')->default(false);
+
             $table->timestamps();
         });
 

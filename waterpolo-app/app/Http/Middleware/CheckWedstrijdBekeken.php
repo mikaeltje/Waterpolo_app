@@ -24,7 +24,7 @@ class CheckWedstrijdBekeken
         if (auth()->check()) {
             $aantalBekeken = auth()->user()->bekekenWedstrijden->count();
 
-            if ($aantalBekeken >= $minAantalBekeken) {
+            if ($aantalBekeken >= $minAantalBekeken || auth()->user()->admin === 1) {
                 return $next($request); // Als aan de voorwaarde is voldaan, ga verder
             } else {
                 return redirect()->back()->with('error', 'Je moet minimaal ' . $minAantalBekeken . ' wedstrijden bekijken voordat je een nieuwe wedstrijd kunt aanmaken.');

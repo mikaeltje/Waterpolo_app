@@ -21,6 +21,7 @@ class MatchesSeeder extends Seeder
                 'home_id' => $faker->numberBetween(1, 10),
                 'away_id' => $faker->numberBetween(1, 10),
                 'user_id' => '1',
+                'match_status' => $faker->boolean,
             ]);
         }
 

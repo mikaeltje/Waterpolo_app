@@ -2,6 +2,8 @@
 
 @section('content')
     <div class="">
+        <a href="{{route('home')}}">terug</a>
+
         <form method="POST" action="/wedstrijd">
         @csrf
             <div class="">

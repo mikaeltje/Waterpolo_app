@@ -13,6 +13,6 @@ class matchesBekijken extends Model
         $this->belongsTo(User::class, 'user_id', 'id');
     }
     public function matches(){
-        $this->belongsTo(User::class, 'matches_id', 'id');
+        $this->belongsTo(Matches::class, 'matches_id', 'id');
     }
 }

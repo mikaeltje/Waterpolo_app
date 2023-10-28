@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function index(){
+    public function index(user $user){
         $matches = Matches::all()->where('user_id', Auth::user()->id);
         return view('user.index', compact('matches'));
     }
@@ -20,7 +20,8 @@ class UserController extends Controller
 
         return view('user.edit', compact('user'));
     }
-    public function store(user $user){
+    public function update(user $user){
+
 
         $user->update(request()->validate([
             'name' => 'required',

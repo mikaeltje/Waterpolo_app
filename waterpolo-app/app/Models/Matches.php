@@ -11,7 +11,7 @@ class Matches extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['home_id' , 'away_id', 'user_id'];
+    protected $fillable = ['home_id' , 'away_id', 'user_id', 'match_status'];
 
     public function homeTeam()
     {

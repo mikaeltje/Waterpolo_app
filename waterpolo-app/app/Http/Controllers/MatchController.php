@@ -22,9 +22,7 @@ class MatchController extends Controller
     }
 
     public function show(matches $match){
-//        $user = auth()->user();
-//        $user->bekeken_wedstrijden += 1;
-//        $user->save();
+
         if (auth()->user()->bekekenWedstrijden()->where('matches_id', $match->id)->count() === 0) {
             auth()->user()->bekekenWedstrijden()->attach($match);
             $match->increment('bekeken');
@@ -49,7 +47,7 @@ class MatchController extends Controller
             return view('matches.edit', ['match' => $match, 'teams' => Team::all()]);
 
         }
-                return redirect('/wedstrijd');
+                return redirect()->route('home')->with('error','dit is niet jouw wedstrijd');
     }
     public function update(matches $match)
     {
@@ -61,29 +59,41 @@ class MatchController extends Controller
         return redirect('/');
     }
     public function warning(matches $match){
-
-        return view('matches.warning', compact('match') );
+        if ($match->user_id == Auth::user()->id ) {
+            return view('matches.warning', compact('match') );
+        }
+        return redirect()->route('home')->with('error','dit is niet jouw wedstrijd');
     }
     public function destroy(matches $match)
     {
-    $match->delete();
-        return redirect('/wedstrijd');
+        $matches_bekeken = MatchesBekijken::where('matches_id', $match->id)->get();
+
+        foreach ($matches_bekeken as $match_bekeken) {
+            $match_bekeken->delete();
+        }
+
+        $match->delete();
+
+        return redirect('/');
     }
     public function searchandfilter(Request $request)
     {
         $zoekTerm = $request->input('search');
         $teamFilter = $request->input('team_filter');
 
-        // Voer de zoekopdracht uit op de matches-tabel.
-        $query = Matches::query();
+        $query = Matches::where('match_status', 1);
 
-        if (!empty($zoekTerm)) {
-            $query-> whereHas('homeTeam', function ($query) use ($zoekTerm) {
-                $query->where('name', 'LIKE', "%$zoekTerm");
+        if (!empty($zoekTerm) ) {
+            $query->where(function ($query) use ($zoekTerm) {
+                $query->whereHas('homeTeam', function ($q) use ($zoekTerm) {
+                    $q->where('name', 'LIKE', "%$zoekTerm%");
+                })->orWhereHas('awayTeam', function ($q) use ($zoekTerm) {
+                    $q->where('name', 'LIKE', "%$zoekTerm%");
+                })->orWhere('id', $zoekTerm);
             });
-//                where('name', 'LIKE', "%$zoekTerm%");
-
         }
+
+
 
         if (!empty($teamFilter)) {
             $query->where(function ($q) use ($teamFilter) {
@@ -95,13 +105,18 @@ class MatchController extends Controller
             });
         }
 
+
+
         $resultaten = $query->get();
 
         return view('matches.searchresults', compact('resultaten'));
     }
-    public function bekijkwedstrijd($matches){
-        $aantalBekeken = auth()->user()->aantalBekekenWedstrijden();
 
+    public function toggleStatus( matches $match)
+    {
+             $match->update(['match_status' => !$match->match_status]);
+
+        return redirect()->route('match.index');
     }
 
 }
